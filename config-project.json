@@ -1,0 +1,18 @@
+{
+  "variableSets" : {
+    "default" : { }
+  },
+  "variableXpaths" : {
+    "/adapter/channel-list/channel[unique-id=\"default-channel\"]/workflow-list/standard-workflow[unique-id=\"webservice-proxy\"]/consumer/path" : "${jetty.uri}",
+    "/adapter/channel-list/channel[unique-id=\"default-channel\"]/workflow-list/standard-workflow[unique-id=\"webservice-proxy\"]/service-collection/services/service-list[unique-id=\"execute-number-conversion\"]/services/apache-cxf-soap-service[unique-id=\"call-number-converter-ws\"]/namespace" : "${ws.url}",
+    "/adapter/channel-list/channel[unique-id=\"default-channel\"]/workflow-list/standard-workflow[unique-id=\"webservice-proxy\"]/service-collection/services/service-list[unique-id=\"execute-text-casing\"]/services/apache-cxf-soap-service[unique-id=\"call-text-casing-ws\"]/namespace" : "${ws.url}"
+  },
+  "uidInXincludeCompntListFileName" : false,
+  "xincludeXpaths" : { },
+  "additionalFiles" : {
+    "bootstrap.properties" : "bootstrap.properties",
+    "log4j2.xml" : "log4j2.xml"
+  },
+  "optionalComponentsInUse" : [ "com.adaptris:interlok-json:4.0-SNAPSHOT", "com.adaptris:interlok-webservice-cxf:4.0-SNAPSHOT" ],
+  "structured" : true
+}

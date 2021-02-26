@@ -1,0 +1,82 @@
+<service-test>
+  <unique-id>compassionate-cray</unique-id>
+  <test-client class="embedded-jmx-test-client"/>
+  <helpers/>
+  <test-list>
+    <unique-id>default-channel</unique-id>
+    <test>
+      <unique-id>parse-number-result</unique-id>
+      <test-case>
+        <unique-id>assert-parse-number-result</unique-id>
+        <input-message-provider>
+          <metadata-provider class="empty-metadata-provider"/>
+          <payload-provider class="inline-payload-provider">
+            <payload><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<NumberToWordsResponse xmlns="http://www.dataaccess.com/webservicesserver/"><NumberToWordsResult>one</NumberToWordsResult>
+</NumberToWordsResponse>]]></payload>
+          </payload-provider>
+        </input-message-provider>
+        <assertions>
+          <assert-metadata-equals>
+            <metadata>
+              <key-value-pair>
+                <key>ResultNumberToWords</key>
+                <value>one</value>
+              </key-value-pair>
+            </metadata>
+          </assert-metadata-equals>
+        </assertions>
+      </test-case>
+      <service-to-test>
+        <source class="file-source">
+          <file>file:///${service.tester.working.directory}/src/main/interlok/config/adapter.xml</file>
+        </source>
+        <preprocessors>
+          <service-unique-id-preprocessor>
+            <channel>default-channel</channel>
+            <workflow>webservice-proxy</workflow>
+            <service>execute-number-conversion</service>
+            <service>parse-number-result</service>
+          </service-unique-id-preprocessor>
+        </preprocessors>
+      </service-to-test>
+    </test>
+    <test>
+      <unique-id>parse-invert-case-result</unique-id>
+      <test-case>
+        <unique-id>assert-parse-invert-case-result</unique-id>
+        <input-message-provider>
+          <metadata-provider class="empty-metadata-provider"/>
+          <payload-provider class="inline-payload-provider">
+            <payload><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<InvertStringCaseResponse xmlns="http://www.dataaccess.com/webservicesserver/">
+<InvertStringCaseResult>ONE</InvertStringCaseResult></InvertStringCaseResponse>]]></payload>
+          </payload-provider>
+        </input-message-provider>
+        <assertions>
+          <assert-metadata-equals>
+            <metadata>
+              <key-value-pair>
+                <key>ResultInvertCase</key>
+                <value>ONE</value>
+              </key-value-pair>
+            </metadata>
+          </assert-metadata-equals>
+        </assertions>
+      </test-case>
+      <service-to-test>
+        <source class="file-source">
+          <file>file:///${service.tester.working.directory}/src/main/interlok/config/adapter.xml</file>
+        </source>
+        <preprocessors>
+          <service-unique-id-preprocessor>
+            <channel>default-channel</channel>
+            <workflow>webservice-proxy</workflow>
+            <service>execute-text-casing</service>
+            <service>parse-invert-case-result</service>
+          </service-unique-id-preprocessor>
+        </preprocessors>
+      </service-to-test>
+    </test>
+  </test-list>
+</service-test>

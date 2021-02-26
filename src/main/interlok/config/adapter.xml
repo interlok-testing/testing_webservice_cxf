@@ -1,0 +1,168 @@
+<adapter>
+  <unique-id>MyInterlokInstance</unique-id>
+  <start-up-event-imp>com.adaptris.core.event.StandardAdapterStartUpEvent</start-up-event-imp>
+  <heartbeat-event-imp>com.adaptris.core.HeartbeatEvent</heartbeat-event-imp>
+  <shared-components>
+    <connections/>
+    <services/>
+  </shared-components>
+  <event-handler class="default-event-handler">
+    <unique-id>DefaultEventHandler</unique-id>
+    <connection class="null-connection">
+      <unique-id>cranky-khorana</unique-id>
+    </connection>
+    <producer class="null-message-producer">
+      <unique-id>admiring-bhabha</unique-id>
+    </producer>
+  </event-handler>
+  <message-error-handler class="standard-processing-exception-handler">
+    <unique-id>send-500-error</unique-id>
+    <processing-exception-service class="service-list">
+      <unique-id>serene-poitras</unique-id>
+      <services>
+        <exception-report-service>
+          <unique-id>ecstatic-jepsen</unique-id>
+          <exception-serializer class="exception-as-json"/>
+        </exception-report-service>
+        <jetty-response-service>
+          <unique-id>send-error-response</unique-id>
+          <http-status>500</http-status>
+          <content-type>application/json</content-type>
+          <response-header-provider class="jetty-no-response-headers"/>
+        </jetty-response-service>
+      </services>
+    </processing-exception-service>
+  </message-error-handler>
+  <failed-message-retrier class="no-retries">
+    <unique-id>furious-ptolemy</unique-id>
+  </failed-message-retrier>
+  <channel-list>
+    <channel>
+      <consume-connection class="jetty-embedded-connection">
+        <unique-id>embedded-jetty</unique-id>
+      </consume-connection>
+      <produce-connection class="null-connection">
+        <unique-id>sad-kowalevski</unique-id>
+      </produce-connection>
+      <workflow-list>
+        <standard-workflow>
+          <consumer class="jetty-message-consumer">
+            <unique-id>gigantic-mayer</unique-id>
+            <path>${jetty.uri}</path>
+          </consumer>
+          <service-collection class="service-list">
+            <unique-id>amazing-knuth</unique-id>
+            <services>
+              <json-to-metadata>
+                <unique-id>berserk-brown</unique-id>
+              </json-to-metadata>
+              <service-list>
+                <unique-id>execute-number-conversion</unique-id>
+                <services>
+                  <payload-from-template>
+                    <unique-id>number-to-words-soap-payload</unique-id>
+                    <metadata-tokens/>
+                    <template>&lt;web:NumberToWords xmlns:web="http://www.dataaccess.com/webservicesserver/"&gt;
+  &lt;web:ubiNum&gt;%message{NumberToWords}&lt;/web:ubiNum&gt;
+&lt;/web:NumberToWords&gt;</template>
+                  </payload-from-template>
+                  <apache-cxf-soap-service>
+                    <unique-id>call-number-converter-ws</unique-id>
+                    <wsdl-url>https://www.dataaccess.com/webservicesserver/NumberConversion.wso?WSDL</wsdl-url>
+                    <port-name>NumberConversionSoap</port-name>
+                    <service-name>NumberConversion</service-name>
+                    <namespace>${ws.url}</namespace>
+                  </apache-cxf-soap-service>
+                  <log-message-service>
+                    <unique-id>sharp-liskov</unique-id>
+                    <log-level>DEBUG</log-level>
+                    <logging-format class="message-logging-with-payload"/>
+                  </log-message-service>
+                  <xpath-metadata-service>
+                    <unique-id>parse-number-result</unique-id>
+                    <xpath-query class="configured-xpath-query">
+                      <metadata-key>ResultNumberToWords</metadata-key>
+                      <xpath-query>/NumberToWordsResponse/NumberToWordsResult</xpath-query>
+                    </xpath-query>
+                    <xml-document-factory-config>
+                      <features/>
+                      <namespace-aware>false</namespace-aware>
+                    </xml-document-factory-config>
+                  </xpath-metadata-service>
+                </services>
+              </service-list>
+              <service-list>
+                <unique-id>execute-text-casing</unique-id>
+                <services>
+                  <payload-from-template>
+                    <unique-id>invert-string-case-soap-payload</unique-id>
+                    <metadata-tokens/>
+                    <template>&lt;web:InvertStringCase xmlns:web="http://www.dataaccess.com/webservicesserver/"&gt;
+  &lt;web:sAString&gt;%message{InvertCase}&lt;/web:sAString&gt;
+&lt;/web:InvertStringCase&gt;</template>
+                  </payload-from-template>
+                  <apache-cxf-soap-service>
+                    <unique-id>call-text-casing-ws</unique-id>
+                    <wsdl-url>https://www.dataaccess.com/webservicesserver/TextCasing.wso?WSDL</wsdl-url>
+                    <port-name>TextCasingSoap</port-name>
+                    <service-name>TextCasing</service-name>
+                    <namespace>${ws.url}</namespace>
+                  </apache-cxf-soap-service>
+                  <log-message-service>
+                    <unique-id>sharp-liskov</unique-id>
+                    <log-level>DEBUG</log-level>
+                    <logging-format class="message-logging-with-payload"/>
+                  </log-message-service>
+                  <xpath-metadata-service>
+                    <unique-id>parse-invert-case-result</unique-id>
+                    <xpath-query class="configured-xpath-query">
+                      <metadata-key>ResultInvertCase</metadata-key>
+                      <xpath-query>/InvertStringCaseResponse/InvertStringCaseResult</xpath-query>
+                    </xpath-query>
+                    <xml-document-factory-config>
+                      <features/>
+                      <namespace-aware>false</namespace-aware>
+                    </xml-document-factory-config>
+                  </xpath-metadata-service>
+                </services>
+              </service-list>
+              <metadata-to-json-service>
+                <unique-id>generate-result</unique-id>
+                <metadata-filter class="regex-metadata-filter">
+                  <include-pattern>^result_.*$</include-pattern>
+                </metadata-filter>
+              </metadata-to-json-service>
+              <jetty-response-service>
+                <unique-id>send-result</unique-id>
+                <http-status>200</http-status>
+                <content-type>application/json</content-type>
+                <response-header-provider class="jetty-no-response-headers"/>
+              </jetty-response-service>
+            </services>
+          </service-collection>
+          <producer class="null-message-producer">
+            <unique-id>pensive-jennings</unique-id>
+          </producer>
+          <produce-exception-handler class="null-produce-exception-handler"/>
+          <unique-id>webservice-proxy</unique-id>
+          <message-metrics-interceptor>
+            <unique-id>webservice-proxy-MessageMetrics</unique-id>
+            <timeslice-duration>
+              <unit>MINUTES</unit>
+              <interval>5</interval>
+            </timeslice-duration>
+            <timeslice-history-count>12</timeslice-history-count>
+          </message-metrics-interceptor>
+          <in-flight-workflow-interceptor>
+            <unique-id>webservice-proxy-InFlight</unique-id>
+          </in-flight-workflow-interceptor>
+        </standard-workflow>
+      </workflow-list>
+      <unique-id>default-channel</unique-id>
+    </channel>
+  </channel-list>
+  <message-error-digester class="standard-message-error-digester">
+    <unique-id>ErrorDigest</unique-id>
+    <digest-max-size>100</digest-max-size>
+  </message-error-digester>
+</adapter>

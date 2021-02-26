@@ -1,0 +1,29 @@
+@startuml "Via Interlok"
+
+participant User
+participant Interlok
+participant Webservice1
+participant Webservice2
+
+== Demo Processing ==
+User->Interlok: POST JSON Data
+note left of Interlok
+{
+  "NumberToWords" : "123",
+  "InvertCase" : "hello world"
+}
+end note
+Interlok->Interlok: JSON Path
+Interlok->Webservice1: Call Webservice
+Interlok->Interlok: Extract data
+Interlok->Webservice2: Call Webservice
+Interlok->Interlok: Extract data
+Interlok-->User: The data.
+note right of Interlok
+{
+  "ResultNumberToWords" : "one hundred and twenty three",
+  "ResultInvertCase" : "HELLO WORLD"
+}
+end note
+
+@enduml
