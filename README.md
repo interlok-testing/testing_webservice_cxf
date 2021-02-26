@@ -4,7 +4,7 @@ Project tests interlok-webservice-cxf and interlok-json features
 
 ## What it does
 
-This project has a single workflow that implements a simple HTTP json API that call two SOAP services parse the result data and return it as a json HTTP response.
+This project has a single workflow that implements a simple HTTP json API that calls two SOAP services, parses the result data and returns it as a json HTTP response.
 
 ![Webservice CXF Diagram](/webservice-cxf-diagram.png "Webservice CXF Diagram")
 
