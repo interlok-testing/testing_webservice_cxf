@@ -8,6 +8,11 @@ This project has a single workflow that implements a simple HTTP json API that c
 
 ![Webservice CXF Diagram](/webservice-cxf-diagram.png "Webservice CXF Diagram")
 
+The two SOAP services used are:
+
+* InvertStringCase in https://www.dataaccess.com/webservicesserver/TextCasing.wso: Uppercase letters that are lowercase and lowercase letters that are uppercase.
+* NumberToWords in https://www.dataaccess.com/webservicesserver/NumberConversion.wso: Returns the word corresponding to the positive number passed as parameter. Limited to quadrillions.
+
 ## Getting started
 
 * `./gradlew clean build`
