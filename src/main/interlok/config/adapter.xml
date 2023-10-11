@@ -143,7 +143,6 @@
           <producer class="null-message-producer">
             <unique-id>pensive-jennings</unique-id>
           </producer>
-          <produce-exception-handler class="null-produce-exception-handler"/>
           <unique-id>webservice-proxy</unique-id>
           <message-metrics-interceptor>
             <unique-id>webservice-proxy-MessageMetrics</unique-id>
