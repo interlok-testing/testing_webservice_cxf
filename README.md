@@ -1,5 +1,8 @@
 ## Webservice CXF Testing
 
+[![license](https://img.shields.io/github/license/interlok-testing/testing_webservice-cxf.svg)](https://github.com/interlok-testing/testing_webservice-cxf/blob/develop/LICENSE)
+[![Actions Status](https://github.com/interlok-testing/testing_webservice-cxf/actions/workflows/gradle-build.yml/badge.svg)](https://github.com/interlok-testing/testing_webservice-cxf/actions/workflows/gradle-build.yml)
+
 Project tests interlok-webservice-cxf and interlok-json features
 
 ## What it does
