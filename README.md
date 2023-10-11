@@ -1,7 +1,7 @@
 ## Webservice CXF Testing
 
-[![license](https://img.shields.io/github/license/interlok-testing/testing_webservice-cxf.svg)](https://github.com/interlok-testing/testing_webservice-cxf/blob/develop/LICENSE)
-[![Actions Status](https://github.com/interlok-testing/testing_webservice-cxf/actions/workflows/gradle-build.yml/badge.svg)](https://github.com/interlok-testing/testing_webservice-cxf/actions/workflows/gradle-build.yml)
+[![license](https://img.shields.io/github/license/interlok-testing/testing_webservice_cxf.svg)](https://github.com/interlok-testing/testing_webservice_cxf/blob/develop/LICENSE)
+[![Actions Status](https://github.com/interlok-testing/testing_webservice_cxf/actions/workflows/gradle-build.yml/badge.svg)](https://github.com/interlok-testing/testing_webservice_cxf/actions/workflows/gradle-build.yml)
 
 Project tests interlok-webservice-cxf and interlok-json features
 
@@ -29,12 +29,7 @@ You can call the api with the following curl commands:
 
 ### Call the API
 
-`curl --location --request POST 'http://localhost:8080/api/webservice-proxy' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "NumberToWords":"123",
-    "InvertCase":"hellow world"
-}'`
+`curl --location --request POST 'http://localhost:8080/api/webservice-proxy' --header 'Content-Type: application/json' --data-raw '{ "NumberToWords":"123", "InvertCase":"hellow world" }'`
 
 And you can expect a response like:
 
