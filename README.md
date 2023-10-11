@@ -35,7 +35,7 @@ And you can expect a response like:
 
 ```json
 {
-    "result_invert_case": "HELLOW WORLD",
-    "result_number_to_words": "one hundred and twenty three "
+    "ResultInvertCase": "HELLOW WORLD",
+    "ResultNumberToWords": "one hundred and twenty three "
 }
 ```

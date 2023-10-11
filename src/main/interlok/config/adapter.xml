@@ -129,7 +129,7 @@
               <metadata-to-json-service>
                 <unique-id>generate-result</unique-id>
                 <metadata-filter class="regex-metadata-filter">
-                  <include-pattern>^result_.*$</include-pattern>
+                  <include-pattern>^Result.*$</include-pattern>
                 </metadata-filter>
               </metadata-to-json-service>
               <jetty-response-service>
