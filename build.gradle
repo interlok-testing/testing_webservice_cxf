@@ -6,8 +6,6 @@ plugins {
 ext {
   testingCommonGradle = "https://raw.githubusercontent.com/interlok-testing/testing_common/refs/heads/master/common.gradle?timestamp=${new Date().getTime()}"
   //testingCommonGradle = "../interlok-testing-common/common.gradle"
-  interlokTestingVersion = "0.1"
-  interlokVersion = '5.0-SNAPSHOT'
   includeWar='true'
 }
 
@@ -29,8 +27,4 @@ dependencies {
 
   interlokJavadocs group: "com.adaptris", name: "interlok-json", version: "$interlokVersion", classifier: "javadoc", changing: true, transitive: false
   interlokJavadocs group: "com.adaptris", name: "interlok-webservice-cxf", version: "$interlokVersion", classifier: "javadoc", changing: true, transitive: false
-  
-  interlokTestRuntime ("com.adaptris:interlok-service-tester:$interlokVersion") { changing=true }
-
-  testImplementation group: "com.adaptris", name: "interlok-testing-common", version: "$interlokTestingVersion"
 }
